@@ -78,8 +78,8 @@ namespace HeroQuery.Controllers
 
             if (!string.IsNullOrWhiteSpace(createtimerange))
             {
-                startTime = createtimerange.ToString().Substring(0, 10);
-                endTime = createtimerange.ToString().Substring(13, createtimerange.ToString().Length - 13);
+                startTime = createtimerange.ToString().Substring(0, 10)+" 00:00:00";
+                endTime = createtimerange.ToString().Substring(13, createtimerange.ToString().Length - 13)+" 23:59:59";
                 where += $"AND a.gameCreationTime BETWEEN '{startTime}' AND '{endTime}' ";
                 whereCount++;
             }
