@@ -1,4 +1,5 @@
 # 英雄联盟战绩查询
+https://lol.qq.com/space/game_info.shtml
 
 ## 需求
 官网加载慢，不能自定义选择查看，不能统计等等。
