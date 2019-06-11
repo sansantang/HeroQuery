@@ -12,7 +12,7 @@
             示例：<a href="https://lol.sw.game.qq.com/lol/commact/?proj=api&c=Battle&a=combatGains&areaId=27&gameId=1529525938&r1=combatGains" target="_blank">https://lol.sw.game.qq.com/lol/commact/?proj=api&c=Battle&a=combatGains&areaId=27&gameId=1529525938&r1=combatGains</a>
         </div>
         <div class="layui-input-block">
-            <textarea name="json" placeholder="请输入JSON内容" class="layui-textarea" style="height: 50px;min-height:50px"></textarea>
+            <textarea name="json" placeholder="请输入JSON内容" class="layui-textarea" id="textjson" style="height: 50px;min-height:50px"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
@@ -43,7 +43,7 @@
                 <input type="text" class="layui-input" id="createtimerange" placeholder=" - " style="width:200px">
             </div>
         </div>
-        <button class="layui-btn" data-type="reload">搜索</button>
+        <button class="layui-btn" data-type="reload" id="serarBtn">搜索</button>
         <button class="layui-btn layui-btn-primary" id="resetSerch">重置</button>
     </div>
 </div>
@@ -71,6 +71,15 @@
 </style>
 
 <script>
+    document.onkeydown = function (e) {
+   
+　　if (event.keyCode == "13") {
+　　　　//回车执行查询
+　　　　$('#serarBtn').click();
+　　}
+    };
+
+
     //当前时间
     function CurentTime()
     {
@@ -146,8 +155,11 @@
 
                     }
                 });
+                $('#textjson').val('');
                 return false;
             });
+
+
 
         //日期范围
         laydate.render({
@@ -164,7 +176,7 @@
             //             ,cellMinWidth: 120 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , cols: [[
                 { field: 'id', width: 80, height: 64, title: 'ID', sort: true }
-                , { field: 'heroId', width: 70, title: 'en' }
+                , { field: 'kda', width: 70, title: 'KDA' ,templet: '#KDA'}
                 , { field: 'championId', width: 60, title: '英雄id' }
                 , { field: 'heroId', width: 110, title: 'en', templet: '#heroId' }
                 , { field: 'championName', width: 90, title: '英雄名' }
@@ -245,11 +257,11 @@
             $('#championName').val('');
             $('#Win').val('');
 
-                laydate.render({
-                    elem: '#createtimerange'
-                    , range: true
-                    ,value: get3MonthBefor()+' - '+CurentTime()
-                }); 
+            laydate.render({
+                elem: '#createtimerange'
+                , range: true
+                ,value: get3MonthBefor()+' - '+CurentTime()
+            });
 
             var championName = $('#championName');
             var Win = $('#Win');
@@ -274,6 +286,14 @@
 <script type="text/html" id="kills">
     <span style="color:#379736">{{d.kills}}/{{d.deathss}}/{{d.assist}}</span>
 
+</script>
+
+<script type="text/html" id="KDA">
+    {{#  if(d.kda >= 3){ }}
+    <span style="color:#379736">{{d.kda}}</span>
+    {{#  } else { }}
+    <span style="color:#ff4500">{{d.kda}}</span>
+    {{#  } }}
 </script>
 
 

@@ -48,7 +48,7 @@ namespace HeroQuery.Models
         /// </summary>
         public string win { get; set; }
 
-
+        public float KDA { get; set; }
 
 
         public string championName { get; set; }

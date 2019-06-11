@@ -208,7 +208,8 @@ namespace HeroQuery.Controllers
                                         assist ,
                                         gameId,
                                         gameCreationTime,
-                                        win
+                                        win,
+                                        KDA                 
                                       )
                                       VALUES  (
                                                 @championId , -- championId - int
@@ -224,7 +225,8 @@ namespace HeroQuery.Controllers
                                                 @assist , -- assist - int
                                                 @gameId , -- gameId - nvarchar(15)
                                                @gameCreationTime,  -- datetime
-                                                @win -- nvarchar(10)
+                                                @win, -- nvarchar(10),
+                                               @KDA   -- KDA (杀/辅) / 死
                                               ) ";
 
 
@@ -244,7 +246,8 @@ namespace HeroQuery.Controllers
                         assist = participantsItem.stats.assists,
                         gameId = info.msg.gameInfo.gameId,
                         gameCreationTime = createtime,
-                        win = participantsItem.stats.win
+                        win = participantsItem.stats.win,
+                        KDA  =  float.Parse(((participantsItem.stats.kills + participantsItem.stats.assists) / float.Parse((participantsItem.stats.deaths).ToString())).ToString("#0.00"))
                     });
 
                 return result;
