@@ -401,7 +401,7 @@ namespace HeroQuery.Models
         /// </summary>
         public int towerKills { get; set; }
         /// <summary>
-        /// 
+        /// 是否重开，0：正常，1：重开
         /// </summary>
         public string gameEndedInEarlySurrender { get; set; }
         /// <summary>

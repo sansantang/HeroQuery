@@ -72,7 +72,7 @@
 
 <script>
     document.onkeydown = function (e) {
-   
+
 　　if (event.keyCode == "13") {
 　　　　//回车执行查询
 　　　　$('#serarBtn').click();
@@ -178,7 +178,7 @@
                 { field: 'id', width: 80, height: 64, title: 'ID', sort: true }
                 , { field: 'kda', width: 70, title: 'KDA' ,templet: '#KDA'}
                 , { field: 'championId', width: 60, title: '英雄id' }
-                , { field: 'heroId', width: 110, title: 'en', templet: '#heroId' }
+                , { field: 'heroId', width: 130, title: 'en', templet: '#heroId' }
                 , { field: 'championName', width: 90, title: '英雄名' }
                 , { field: 'kills', width: 85, title: '杀',templet: '#kills' }
                 , { field: 'item0Img', width: 66, title: '物品1', templet: '#titleTpl0' }
@@ -299,15 +299,21 @@
 
 <script type="text/html" id="heroId">
     <img src="/img/heros/{{d.heroId}}.png" width="46" height="46" title="{{d.title}}" />
-    {{#  if(d.win == "Fail"){ }}
-    <span style="color:#ff4500">失败</span>
-    {{# } else if(d.win == "Win"){ }}
-    <span style="color:#379736">胜利</span>
-    {{# } else if(d.win == "LeaverFail"){ }}
-    <span style="color:#808080">逃跑</span>
+    {{#  if(d.gameEndedInEarlySurrender == "1"){ }}
+    <span style="color:#ff4500">重开局</span>
     {{#  } else { }}
-    {{d.win}}
+        {{#  if(d.win == "Fail"){ }}
+        <span style="color:#ff4500">失败</span>
+        {{# } else if(d.win == "Win"){ }}
+        <span style="color:#379736">胜利</span>
+        {{# } else if(d.win == "LeaverFail"){ }}
+        <span style="color:#808080">逃跑</span>
+        {{#  } else { }}
+        {{d.win}}
     {{#  } }}
+    {{#  } }}
+
+
 </script>
 
 <script type="text/html" id="titleTpl0">

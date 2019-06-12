@@ -49,6 +49,11 @@ namespace HeroQuery.Models
         public string win { get; set; }
 
         public float KDA { get; set; }
+        /// <summary>
+        /// 是否重开，0：正常，1：重开
+        /// </summary>
+        public int GameEndedInEarlySurrender { get; set; }
+
 
 
         public string championName { get; set; }
