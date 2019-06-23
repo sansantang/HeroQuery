@@ -209,20 +209,39 @@
 //                 console.log(currentValue)
 //                 console.log(index)
                     if (currentValue.numId === 1) {
-                        innerHTML += "<span class='layui-btn layui-btn-danger layui-btn-radius' >"+currentValue.name+"</span> <span class=\"layui-badge rankingcount\" style='margin-right:5px'>"+currentValue.occurrenceCount+"</span>";
+                        innerHTML += "<span class='layui-btn layui-btn-danger layui-btn-radius seriseName'  >"+currentValue.name+"</span> <span class=\"layui-badge rankingcount\" style='margin-right:5px'>"+currentValue.occurrenceCount+"</span>";
                     }
                     else if(currentValue.numId === 2) {
-                        innerHTML += "<span class='layui-btn layui-btn-warm layui-btn-radius'>"+currentValue.name+"</span> <span class=\"layui-badge layui-bg-orange rankingcount\" style='margin-right:5px'>"+currentValue.occurrenceCount+"</span>";
+                        innerHTML += "<span class='layui-btn layui-btn-warm layui-btn-radius seriseName'>"+currentValue.name+"</span> <span class=\"layui-badge layui-bg-orange rankingcount\" style='margin-right:5px'>"+currentValue.occurrenceCount+"</span>";
                     }
                     else if (currentValue.numId === 3) {
-                        innerHTML += "<span class='layui-btn layui-btn-normal layui-btn-radius'>"+currentValue.name+"</span> <span class=\"layui-badge layui-bg-blue rankingcount\" style='margin-right:5px'>"+currentValue.occurrenceCount+"</span>";
+                        innerHTML += "<span class='layui-btn layui-btn-normal layui-btn-radius seriseName' >"+currentValue.name+"</span> <span class=\"layui-badge layui-bg-blue rankingcount\" style='margin-right:5px'>"+currentValue.occurrenceCount+"</span>";
                     }
                     else {
-                        innerHTML += "<span>"+currentValue.name+"</span> <span class=\"layui-badge layui-bg-gray rankingcount\" style='margin-right:20px'>"+currentValue.occurrenceCount+"</span>";
+                        innerHTML += "<span class='seriseName'>"+currentValue.name+"</span> <span class=\"layui-badge layui-bg-gray rankingcount\" style='margin-right:20px'>"+currentValue.occurrenceCount+"</span>";
                     }
 
                 });
                 $('.ranking').html(innerHTML);
+                $('.seriseName').click(function () {
+                    let currentName = $(this).text();
+                    var championName = $('#championName').val(currentName);
+                    var Win = $('#Win');
+                    var createtimerange = $('#createtimerange');
+                    //执行重载
+                    tableObj.reload({
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            key: {
+                                championName: currentName,
+                                Win: Win.val(),
+                                createtimerange: createtimerange.val()
+                            }
+                        }
+                    }, 'data');
+                });
             }
         });
 
@@ -252,6 +271,8 @@
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
+
+
 
         $('#resetSerch').on('click', function () {
             $('#championName').val('');
