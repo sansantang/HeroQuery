@@ -60,5 +60,10 @@ namespace HeroQuery.Models
         public string HeroId { get; set; }
 
         public string title { get; set; }
+
+        /// <summary>
+        /// 使用次数 -- 排名专用
+        /// </summary>
+        public int  num { get; set; }
     }
 }

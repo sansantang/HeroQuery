@@ -178,8 +178,8 @@
                 { field: 'id', width: 80, height: 64, title: 'ID', sort: true }
                 , { field: 'kda', width: 70, title: 'KDA' ,templet: '#KDA'}
                 , { field: 'championId', width: 60, title: '英雄id' }
-                , { field: 'heroId', width: 130, title: 'en', templet: '#heroId' }
-                , { field: 'championName', width: 90, title: '英雄名' }
+                , { field: 'heroId', width: 180, title: '使用英雄', templet: '#heroId' }
+                , { field: 'title', width: 90, title: '英雄名' }
                 , { field: 'kills', width: 85, title: '杀',templet: '#kills' }
                 , { field: 'item0Img', width: 66, title: '物品1', templet: '#titleTpl0' }
                 , { field: 'item1Name', width: 66, title: '物品2', templet: '#titleTpl1' }
@@ -300,16 +300,28 @@
 <script type="text/html" id="heroId">
     <img src="/img/heros/{{d.heroId}}.png" width="46" height="46" title="{{d.title}}" />
     {{#  if(d.gameEndedInEarlySurrender == "1"){ }}
-    <span style="color:#ff4500">重开局</span>
+    <div style="width: 65%;float:right">
+        <p style="line-height:20px;color:#ff4500;">重开局</p>
+        <p style="line-height:20px;">{{d.championName}}</p>
+    </div>
     {{#  } else { }}
-        {{#  if(d.win == "Fail"){ }}
-        <span style="color:#ff4500">失败</span>
-        {{# } else if(d.win == "Win"){ }}
-        <span style="color:#379736">胜利</span>
-        {{# } else if(d.win == "LeaverFail"){ }}
-        <span style="color:#808080">逃跑</span>
-        {{#  } else { }}
-        {{d.win}}
+    {{#  if(d.win == "Fail"){ }}
+    <div style="width: 65%;float:right">
+        <p style="line-height:20px;color:#ff4500;">失败</p>
+        <p style="line-height:20px;">{{d.championName}}</p>
+    </div>
+    {{# } else if(d.win == "Win"){ }}
+    <div style="width: 65%;float:right">
+        <p style="line-height:20px;color:#379736;">胜利</p>
+        <p style="line-height:20px;">{{d.championName}}</p>
+    </div>
+    {{# } else if(d.win == "LeaverFail"){ }}
+    <div style="width: 65%;float:right">
+        <p style="line-height:20px;color:#808080;">逃跑</p>
+        <p style="line-height:20px;">{{d.championName}}</p>
+    </div>
+    {{#  } else { }}
+    {{d.win}}
     {{#  } }}
     {{#  } }}
 
